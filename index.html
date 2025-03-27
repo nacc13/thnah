@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة الاسم على الصورة</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        canvas { border: 1px solid #ccc; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>أدخل اسمك لإضافته على الصورة</h2>
+    <input type="text" id="userName" placeholder="اكتب اسمك هنا">
+    <button onclick="addText()">إضافة الاسم</button>
+    <br>
+    <canvas id="imageCanvas"></canvas>
+    <br>
+    <button onclick="downloadImage()">تحميل الصورة</button>
+
+    <script>
+        const canvas = document.getElementById('imageCanvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        img.src = 'design.png'; // استبدلها برابط أو اسم الصورة لديك
+
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+        };
+
+        function addText() {
+            const name = document.getElementById('userName').value;
+            ctx.drawImage(img, 0, 0); // إعادة رسم الصورة الأساسية
+            ctx.font = '40px Arial';
+            ctx.fillStyle = 'black'; // لون النص
+            ctx.textAlign = 'center';
+            ctx.fillText(name, canvas.width / 2, canvas.height - 50);
+        }
+
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'custom-image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
