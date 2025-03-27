@@ -139,9 +139,8 @@
         <div class="card-header">
             <i class="fas fa-star-and-crescent"></i>
             <h1>عيد فطر مبارك</h1>
-            <p2>كل عام وأنتم بخير❤️</p2>
-            <p> شاركونا اسمكم للحصول على تهنئة </p>
-
+            <p>كل عام وأنتم بخير❤️</p>
+            <p>شاركونا اسمكم للحصول على تهنئة</p>
         </div>
         
         <div class="input-container">
@@ -196,23 +195,14 @@
                     // رسم الصورة الأساسية
                     ctx.drawImage(img, 0, 0);
                     
-                    // إضافة الاسم
+                    // إعدادات النص
                     ctx.font = "bold 53px 'Rubik', sans-serif";
                     ctx.fillStyle = "#bc9e60";
-        ctx.textAlign = "left"; // محاذاة لليسار (للتحديد الدقيق للموضع)
+        ctx.textAlign = "right"; // محاذاة لليمين للنص العربي
                     ctx.textBaseline = "middle";
                     
-                    // إضافة ظل للنص
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0)';
-                    ctx.shadowBlur = 6;
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
-                    
-                    // كتابة النص (يمكن تعديل الموضع حسب الصورة)
-        ctx.fillText(name, 186, 1076.3); // x=186, y=1076.3
-                    
-                    // إزالة الظل للعناصر الأخرى
-                    ctx.shadowColor = 'transparent';
+                    // كتابة النص في الموضع المحدد
+                    ctx.fillText(name, 186, 1076.3);
                     
                     // تحويل Canvas إلى صورة للعرض
                     const dataURL = canvas.toDataURL('image/png');
@@ -222,7 +212,7 @@
                     // إعداد زر التحميل
                     elements.downloadBtn.onclick = function() {
                         const link = document.createElement('a');
-                        link.download = `تهنئة نادي المحاسبة-${name}.png`;
+                        link.download = `تهنئة-نادي-المحاسبة-${name}.png`;
                         link.href = dataURL;
                         link.click();
                     };
