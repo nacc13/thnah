@@ -199,17 +199,17 @@
                     // إضافة الاسم
                     ctx.font = "bold 53px 'Rubik', sans-serif";
                     ctx.fillStyle = "#bc9e60";
-                    ctx.textAlign = "center";
+        ctx.textAlign = "left"; // محاذاة لليسار (للتحديد الدقيق للموضع)
                     ctx.textBaseline = "middle";
                     
                     // إضافة ظل للنص
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0)';
                     ctx.shadowBlur = 6;
                     ctx.shadowOffsetX = 2;
                     ctx.shadowOffsetY = 2;
                     
                     // كتابة النص (يمكن تعديل الموضع حسب الصورة)
-                    ctx.fillText(name, 186, 1076.3);
+        ctx.fillText(name, 186, 1076.3); // x=186, y=1076.3
                     
                     // إزالة الظل للعناصر الأخرى
                     ctx.shadowColor = 'transparent';
