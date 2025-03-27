@@ -1,49 +1,180 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إضافة الاسم على الصورة</title>
+    <title>بطاقة تهنئة رمضان</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        canvas { border: 1px solid #ccc; margin-top: 20px; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #f0e6d2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .card {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+        }
+        
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #4CAF50;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #downloadBtn {
+            background: linear-gradient(to right, #2196F3, #03A9F4);
+        }
+        
+        #generatedImage {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
-    <h2>أدخل اسمك لإضافته على الصورة</h2>
-    <input type="text" id="userName" placeholder="اكتب اسمك هنا">
-    <button onclick="addText()">إضافة الاسم</button>
-    <br>
-    <canvas id="imageCanvas"></canvas>
-    <br>
-    <button onclick="downloadImage()">تحميل الصورة</button>
+    <div class="card">
+        <h1>رمضان كريم</h1>
+        <img id="design.png" src="design.png" alt="تهنئة رمضان">
+        <p>أدخل اسمك للحصول على تهنئة شخصية:</p>
+        
+        <input type="text" id="nameInput" placeholder="اكتب اسمك هنا...">
+        <button id="generateBtn" class="btn">توليد التهنئة</button>
+        
+        <div id="resultSection" class="hidden">
+            <canvas id="imageCanvas" class="hidden"></canvas>
+            <img id="generatedImage" class="hidden">
+            <button id="downloadBtn" class="btn hidden">تحميل الصورة</button>
+        </div>
+    </div>
 
     <script>
-        const canvas = document.getElementById('imageCanvas');
-        const ctx = canvas.getContext('2d');
-        const img = new Image();
-        img.src = 'design.png'; // استبدلها برابط أو اسم الصورة لديك
-
-        img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-        };
-
-        function addText() {
-            const name = document.getElementById('userName').value;
-            ctx.drawImage(img, 0, 0); // إعادة رسم الصورة الأساسية
-            ctx.font = '40px Arial';
-            ctx.fillStyle = 'black'; // لون النص
-            ctx.textAlign = 'center';
-            ctx.fillText(name, canvas.width / 2, canvas.height - 50);
-        }
-
-        function downloadImage() {
-            const link = document.createElement('a');
-            link.download = 'custom-image.png';
-            link.href = canvas.toDataURL();
-            link.click();
+        const nameInput = document.getElementById('nameInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const resultSection = document.getElementById('resultSection');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const ramadanImage = document.getElementById('ramadanImage');
+        const imageCanvas = document.getElementById('imageCanvas');
+        const generatedImage = document.getElementById('generatedImage');
+        
+        generateBtn.addEventListener('click', function() {
+            const name = nameInput.value.trim();
+            if (name === "") {
+                alert("الرجاء إدخال اسمك أولاً!");
+                return;
+            }
+            
+            // إنشاء الصورة مع الاسم
+            generateImageWithName(name);
+        });
+        
+        function generateImageWithName(name) {
+            const canvas = imageCanvas;
+            const ctx = canvas.getContext('2d');
+            
+            // تحميل الصورة الأصلية
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.src = ramadanImage.src;
+            
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // رسم الصورة على Canvas
+                ctx.drawImage(img, 0, 0);
+                
+                // إضافة النص (الاسم)
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "#4CAF50";
+                ctx.textAlign = "center";
+                ctx.fillText(name, canvas.width / 2, canvas.height - 50);
+                
+                // تحويل Canvas إلى صورة للعرض والتحميل
+                const dataURL = canvas.toDataURL('image/png');
+                generatedImage.src = dataURL;
+                
+                // إظهار النتيجة وزر التحميل
+                generatedImage.classList.remove('hidden');
+                downloadBtn.classList.remove('hidden');
+                resultSection.classList.remove('hidden');
+                
+                // إعداد زر التحميل
+                downloadBtn.onclick = function() {
+                    const link = document.createElement('a');
+                    link.download = `تهنئة-رمضان-${name}.png`;
+                    link.href = dataURL;
+                    link.click();
+                };
+            };
         }
     </script>
 </body>
