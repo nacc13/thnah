@@ -198,11 +198,11 @@
                     // إعدادات النص
                     ctx.font = "bold 53px 'Rubik', sans-serif";
                     ctx.fillStyle = "#bc9e60";
-        ctx.textAlign = "right"; // محاذاة لليمين للنص العربي
+ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
                     
                     // كتابة النص في الموضع المحدد
-                    ctx.fillText(name, 186, 1076.3);
+ctx.fillText(name, canvas.width/2, 1076.3); // مركز الصورة
                     
                     // تحويل Canvas إلى صورة للعرض
                     const dataURL = canvas.toDataURL('image/png');
