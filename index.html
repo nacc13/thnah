@@ -24,9 +24,20 @@
             background-color: var(--background-color);
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+        }
+        
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            width: 100%;
         }
         
         .footer-text {
@@ -37,7 +48,7 @@
             margin-top: 40px;
             margin-bottom: 20px;
             line-height: 1.6;
-            display: none; /* إخفاء النص في البداية */
+            display: none;
             animation: fadeIn 0.5s ease-out;
         }
         
@@ -53,6 +64,7 @@
         
         .card {
             width: 100%;
+            max-width: 450px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -156,24 +168,26 @@
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <i class="fas fa-star-and-crescent"></i>
-            <h1>عيد فطر مبارك</h1>
-            <p2>كل عام وأنتم بخير❤️</p2>
-            <p>شاركونا اسمكم للحصول على تهنئة</p>
-        </div>
-        
-        <div class="input-container">
-            <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." autocomplete="off">
-        </div>
-        
-        <div id="resultSection" class="result-section hidden">
-            <canvas id="imageCanvas" class="hidden"></canvas>
-            <img id="generatedImage" alt="تهنئة نادي المحاسبة">
-            <button class="download-btn" id="downloadBtn">
-                <i class="fas fa-download"></i> حمل التهنئة
-            </button>
+    <div class="main-container">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-star-and-crescent"></i>
+                <h1>عيد فطر مبارك</h1>
+                <p2>كل عام وأنتم بخير❤️</p2>
+                <p>شاركونا اسمكم للحصول على تهنئة</p>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." autocomplete="off">
+            </div>
+            
+            <div id="resultSection" class="result-section hidden">
+                <canvas id="imageCanvas" class="hidden"></canvas>
+                <img id="generatedImage" alt="تهنئة نادي المحاسبة">
+                <button class="download-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i> حمل التهنئة
+                </button>
+            </div>
         </div>
     </div>
     
@@ -201,10 +215,10 @@
                 const name = this.value.trim();
                 if (name) {
                     generateImageWithName(name);
-                    elements.footerText.style.display = 'block'; // إظهار النص عند إدخال الاسم
+                    elements.footerText.style.display = 'block';
                 } else {
                     elements.resultSection.classList.add('hidden');
-                    elements.footerText.style.display = 'none'; // إخفاء النص عند حذف الاسم
+                    elements.footerText.style.display = 'none';
                 }
             });
 
@@ -231,7 +245,7 @@
                     ctx.textBaseline = "middle";
                     
                     // كتابة النص في الموضع المحدد
-                    ctx.fillText(name, canvas.width/2, 1200); // مركز الصورة
+                    ctx.fillText(name, canvas.width/2, 1200);
                     
                     // تحويل Canvas إلى صورة للعرض
                     const dataURL = canvas.toDataURL('image/png');
@@ -241,7 +255,7 @@
                     // إعداد زر التحميل
                     elements.downloadBtn.onclick = function() {
                         const link = document.createElement('a');
-                        link.download = `كل عام وانت اجمل محاسب يا ${name}.png`;
+                        link.download = `كل عام وانت اجمل محاسب يا ${name}❤️‍🩹`;
                         link.href = dataURL;
                         link.click();
                     };
