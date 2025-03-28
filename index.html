@@ -28,15 +28,19 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
         }
         
         .footer-text {
+            position: fixed;
+            bottom: 20px;
             width: 100%;
             max-width: 450px;
             text-align: center;
             color: #000;
-            margin-top: 30px;
+            padding: 0 20px;
             line-height: 1.6;
+            background-color: var(--background-color);
         }
         
         .footer-text .line1 {
@@ -60,6 +64,7 @@
             position: relative;
             overflow: hidden;
             animation: fadeIn 0.5s ease-out;
+            margin-bottom: 100px; /* مساحة للجزء السفلي الثابت */
         }
         
         @keyframes fadeIn {
