@@ -23,32 +23,30 @@
             font-family: 'Rubik', sans-serif;
             background-color: var(--background-color);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            position: relative;
         }
         
-        .page-title {
-            position: absolute;
-            top: 20px;
+        .footer-text {
             width: 100%;
+            max-width: 450px;
             text-align: center;
             color: #000;
-            font-size: 28px;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+        
+        .footer-text .line1 {
+            font-size: 24px;
             font-weight: bold;
-            padding: 0 20px;
+            margin-bottom: 10px;
         }
         
-        .page-footer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            color: #000;
+        .footer-text .line2 {
             font-size: 18px;
-            padding: 0 20px;
         }
         
         .card {
@@ -62,7 +60,6 @@
             position: relative;
             overflow: hidden;
             animation: fadeIn 0.5s ease-out;
-            margin: 60px 0;
         }
         
         @keyframes fadeIn {
@@ -158,8 +155,6 @@
     </style>
 </head>
 <body>
-    <div class="page-title">عيدك أحلى مع نادي المحاسبة</div>
-    
     <div class="card">
         <div class="card-header">
             <i class="fas fa-star-and-crescent"></i>
@@ -181,7 +176,10 @@
         </div>
     </div>
     
-    <div class="page-footer">لا تنسى تشارك التهنئة مع أصحابك وتعمل لنا منشن❤️</div>
+    <div class="footer-text">
+        <div class="line1">عيدك أحلى مع نادي المحاسبة</div>
+        <div class="line2">لا تنسى تشارك التهنئة مع أصحابك وتعمل لنا منشن❤️</div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -239,7 +237,7 @@
                     // إعداد زر التحميل
                     elements.downloadBtn.onclick = function() {
                         const link = document.createElement('a');
-                        link.download = `تهنئة-نادي-المحاسبة-${name}.png`;
+                        link.download = `كل عام وانت اجمل محاسب يا ${name}.png`;
                         link.href = dataURL;
                         link.click();
                     };
