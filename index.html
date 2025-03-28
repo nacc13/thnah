@@ -27,6 +27,28 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+        }
+        
+        .page-title {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            color: #000;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 0 20px;
+        }
+        
+        .page-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #000;
+            font-size: 18px;
+            padding: 0 20px;
         }
         
         .card {
@@ -40,6 +62,7 @@
             position: relative;
             overflow: hidden;
             animation: fadeIn 0.5s ease-out;
+            margin: 60px 0;
         }
         
         @keyframes fadeIn {
@@ -135,6 +158,8 @@
     </style>
 </head>
 <body>
+    <div class="page-title">عيدك أحلى مع نادي المحاسبة</div>
+    
     <div class="card">
         <div class="card-header">
             <i class="fas fa-star-and-crescent"></i>
@@ -155,6 +180,8 @@
             </button>
         </div>
     </div>
+    
+    <div class="page-footer">لا تنسى تشارك التهنئة مع أصحابك وتعمل لنا منشن❤️</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -198,11 +225,11 @@
                     // إعدادات النص
                     ctx.font = "bold 70px 'Rubik', sans-serif";
                     ctx.fillStyle = "#bc9e60";
-ctx.textAlign = "center";
+                    ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
                     
                     // كتابة النص في الموضع المحدد
-ctx.fillText(name, canvas.width/2, 1200); // مركز الصورة
+                    ctx.fillText(name, canvas.width/2, 1200); // مركز الصورة
                     
                     // تحويل Canvas إلى صورة للعرض
                     const dataURL = canvas.toDataURL('image/png');
