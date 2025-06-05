@@ -12,13 +12,13 @@
             --text-color: #333;
             --background-color: #ad9a70;
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             font-family: 'Rubik', sans-serif;
             background-color: var(--background-color);
@@ -30,7 +30,7 @@
             padding: 20px;
             position: relative;
         }
-        
+
         .main-container {
             display: flex;
             flex-direction: column;
@@ -39,7 +39,7 @@
             flex-grow: 1;
             width: 100%;
         }
-        
+
         .footer-text {
             width: 100%;
             max-width: 450px;
@@ -51,17 +51,17 @@
             display: none;
             animation: fadeIn 0.5s ease-out;
         }
-        
+
         .footer-text .line1 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        
+
         .footer-text .line2 {
             font-size: 18px;
         }
-        
+
         .card {
             width: 100%;
             max-width: 450px;
@@ -74,39 +74,33 @@
             overflow: hidden;
             animation: fadeIn 0.5s ease-out;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .card-header {
             margin-bottom: 20px;
         }
-        
-        .card-header i {
-            color: var(--primary-color);
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
+
         h1 {
             color: var(--primary-color);
             font-size: 30px;
             margin-bottom: 15px;
         }
-        
+
         p {
             color: var(--text-color);
             font-size: 17px;
             line-height: 1.6;
             margin-bottom: 25px;
         }
-        
+
         .input-container {
             margin: 25px 0;
         }
-        
+
         input {
             width: 100%;
             padding: 15px 25px;
@@ -117,29 +111,29 @@
             font-family: 'Rubik', sans-serif;
             transition: all 0.3s;
         }
-        
+
         input:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(64, 116, 117, 0.2);
         }
-        
+
         .result-section {
             margin-top: 30px;
             animation: slideUp 0.4s ease-out;
         }
-        
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         #generatedImage {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #f0f0f0;
         }
-        
+
         .download-btn {
             background: var(--primary-color);
             color: white;
@@ -155,31 +149,32 @@
             gap: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
-        
+
         .download-btn:hover {
             background: #335e5f;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .hidden {
             display: none;
         }
     </style>
 </head>
 <body>
-<div class="card-header">
-    <div style="font-size: 40px;">🐑</div>
-    <h1>عيد أضحى مبارك</h1>
-    <p2>كل عام وأنتم بخير❤️</p2>
-    <p>شاركونا اسمكم للحصول على تهنئة</p>
-</div>
+    <div class="main-container">
+        <div class="card">
+            <div class="card-header">
+                <div style="font-size: 40px;">🐑</div>
+                <h1>عيد أضحى مبارك</h1>
+                <p2>كل عام وأنتم بخير❤️</p2>
+                <p>شاركونا اسمكم للحصول على تهنئة</p>
+            </div>
 
-            
             <div class="input-container">
                 <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." autocomplete="off">
             </div>
-            
+
             <div id="resultSection" class="result-section hidden">
                 <canvas id="imageCanvas" class="hidden"></canvas>
                 <img id="generatedImage" alt="تهنئة نادي المحاسبة">
@@ -189,7 +184,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="footerText" class="footer-text">
         <div class="line1">عيدك أحلى مع نادي المحاسبة</div>
         <div class="line2">لا تنسى تشارك التهنئة مع أصحابك وتعمل لنا منشن❤️</div>
@@ -206,10 +201,8 @@
                 footerText: document.getElementById('footerText')
             };
 
-            // استخدام الصورة المطلوبة "design.png"
             const defaultImageUrl = 'design.png';
-            
-            // تحديث الصورة عند كتابة الاسم
+
             elements.nameInput.addEventListener('input', function() {
                 const name = this.value.trim();
                 if (name) {
@@ -224,34 +217,29 @@
             function generateImageWithName(name) {
                 const canvas = elements.imageCanvas;
                 const ctx = canvas.getContext('2d');
-                
+
                 const img = new Image();
                 img.crossOrigin = "Anonymous";
                 img.src = defaultImageUrl;
-                
+
                 img.onload = function() {
-                    // تحديد أبعاد الصورة
                     canvas.width = img.width;
                     canvas.height = img.height;
-                    
-                    // رسم الصورة الأساسية
+
                     ctx.drawImage(img, 0, 0);
-                    
-                    // إعدادات النص
+
                     ctx.font = "bold 70px 'Rubik', sans-serif";
-                    ctx.fillStyle = "#bc9e60";
+                    ctx.fillStyle = "#ffffff"; // لون أبيض
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
-                    
-                    // كتابة النص في الموضع المحدد
-                    ctx.fillText(name, canvas.width/2, 674);
-                    
-                    // تحويل Canvas إلى صورة للعرض
+
+                    // إحداثيات النص المعدّلة
+                    ctx.fillText(name, 2 , 676);
+
                     const dataURL = canvas.toDataURL('image/png');
                     elements.generatedImage.src = dataURL;
                     elements.resultSection.classList.remove('hidden');
-                    
-                    // إعداد زر التحميل
+
                     elements.downloadBtn.onclick = function() {
                         const link = document.createElement('a');
                         link.download = `كل عام وانت اجمل محاسب يا ${name}❤️‍🩹`;
