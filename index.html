@@ -12,13 +12,11 @@
             --text-color: #333;
             --background-color: #ad9a70;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Rubik', sans-serif;
             background-color: var(--background-color);
@@ -30,7 +28,6 @@
             padding: 20px;
             position: relative;
         }
-
         .main-container {
             display: flex;
             flex-direction: column;
@@ -39,7 +36,6 @@
             flex-grow: 1;
             width: 100%;
         }
-
         .footer-text {
             width: 100%;
             max-width: 450px;
@@ -51,17 +47,14 @@
             display: none;
             animation: fadeIn 0.5s ease-out;
         }
-
         .footer-text .line1 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-
         .footer-text .line2 {
             font-size: 18px;
         }
-
         .card {
             width: 100%;
             max-width: 450px;
@@ -74,33 +67,27 @@
             overflow: hidden;
             animation: fadeIn 0.5s ease-out;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .card-header {
             margin-bottom: 20px;
         }
-
         h1 {
             color: var(--primary-color);
             font-size: 30px;
             margin-bottom: 15px;
         }
-
         p {
             color: var(--text-color);
             font-size: 17px;
             line-height: 1.6;
             margin-bottom: 25px;
         }
-
         .input-container {
             margin: 25px 0;
         }
-
         input {
             width: 100%;
             padding: 15px 25px;
@@ -111,29 +98,24 @@
             font-family: 'Rubik', sans-serif;
             transition: all 0.3s;
         }
-
         input:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(64, 116, 117, 0.2);
         }
-
         .result-section {
             margin-top: 30px;
             animation: slideUp 0.4s ease-out;
         }
-
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         #generatedImage {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #f0f0f0;
         }
-
         .download-btn {
             background: var(--primary-color);
             color: white;
@@ -149,13 +131,11 @@
             gap: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
-
         .download-btn:hover {
             background: #335e5f;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
-
         .hidden {
             display: none;
         }
@@ -229,12 +209,11 @@
                     ctx.drawImage(img, 0, 0);
 
                     ctx.font = "bold 70px 'Rubik', sans-serif";
-                    ctx.fillStyle = "#ffffff"; // لون أبيض
+                    ctx.fillStyle = "#ffffff"; // اللون الأبيض
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
 
-                    // إحداثيات النص المعدّلة
-                    ctx.fillText(name, 2 , 676);
+                    ctx.fillText(name, 398.05, 678);
 
                     const dataURL = canvas.toDataURL('image/png');
                     elements.generatedImage.src = dataURL;
